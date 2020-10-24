@@ -16,3 +16,10 @@
 
 ---
 #### case
+
+запуск
+- `make compose-run`  
+дождаться, что будут доступны minio на `localhost:9000` и grafana на `localhost:3000`  
+доступы в minio `minio-access-key:minio-secret-key`, в grafana -- `admin:admin`
+- `make consumer-run` -- запуск консьюмера, который сохраняет файлы из kafka в minio
+- `make producer-run` -- запуск продьюсера, который получает файлы и складывает в кафку

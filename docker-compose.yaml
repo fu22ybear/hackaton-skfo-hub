@@ -45,33 +45,6 @@ services:
       timeout: 5s
       retries: 10
 
-#  clickhouse:
-#    container_name: clickhouse
-#    image: yandex/clickhouse-server:20.9.3
-#    ports:
-#      - "8123:8123"
-#    volumes:
-#      - ./docker/clickhouse/log:/var/log/clickhouse-server
-#      - ./docker/clickhouse/data:/var/lib/clickhouse
-#      - ./docker/clickhouse/etc/clickhouse-server/users.d:/etc/clickhouse-server/users.d
-#    ulimits:
-#      nofile:
-#        soft: 262144
-#        hard: 262144
-#    networks:
-#      - internal
-#    restart: on-failure
-#    deploy:
-#      mode: replicated
-#      replicas: 1
-#      placement:
-#        max_replicas_per_node: 1
-#    healthcheck:
-#      test: ["CMD", "clickhouse-client", "-q", "'SELECT * FROM system.one'"]
-#      interval: 30s
-#      timeout: 5s
-#      retries: 10
-
   grafana:
     container_name: grafana
     image: grafana/grafana:7.2.2-ubuntu
@@ -82,10 +55,6 @@ services:
       - "3000:3000"
     volumes:
       - ./docker/grafana/data:/var/lib/grafana
-#    depends_on:
-#      - clickhouse
-#    links:
-#      - clickhouse
     networks:
       - internal
     restart: on-failure
@@ -99,32 +68,6 @@ services:
       interval: 30s
       timeout: 5s
       retries: 10
-
-#  metabase:
-#    container_name: metabase
-#    image: metabase/metabase:v0.36.6
-#    ports:
-#      - "3001:3000"
-#    volumes:
-#      - ./docker/metabase/data:/metabase.db
-#      - ./docker/metabase/plugins:/plugins
-#    depends_on:
-#      - clickhouse
-#    links:
-#      - clickhouse
-#    networks:
-#      - internal
-#    restart: on-failure
-#    deploy:
-#      mode: replicated
-#      replicas: 1
-#      placement:
-#        max_replicas_per_node: 1
-#    healthcheck:
-#      test: ["CMD", "curl", "-f", "http://localhost:3001"]
-#      interval: 30s
-#      timeout: 5s
-#      retries: 10
 
   minio:
     container_name: minio

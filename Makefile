@@ -18,10 +18,10 @@ compose-run-d: compose-rm compose-build
 	docker-compose up -d
 
 compose-stop:
-	- docker stop zookeeper kafka clickhouse grafana metabase minio
+	- docker stop zookeeper kafka grafana minio
 
 compose-rm: compose-stop
-	- docker rm zookeeper kafka clickhouse grafana metabase minio
+	- docker rm zookeeper kafka grafana minio
 
 
 # producer
@@ -69,7 +69,7 @@ consumer-run: consumer-stop
 		--volume ${wd}/docker/${consumer}/:/app \
 		--network ${network} \
 		--link kafka:kafka \
-		--link clickhouse:clickhouse \
+		--link clickhouse:\
 		--link minio:minio \
 		${consumer}
 
@@ -100,7 +100,7 @@ oscillogram_analyzer-run: oscillogram_analyzer-stop
 		--volume ${wd}/docker/${oscillogram_analyzer}/:/app \
 		--network ${network} \
 		--link kafka:kafka \
-		--link clickhouse:clickhouse \
+		--link clickhouse:\
 		--link minio:minio \
 		${oscillogram_analyzer}
 
@@ -120,7 +120,7 @@ oscillogram_analyzer-stop:
 
 # all
 all-stop:
-	- docker stop zookeeper kafka clickhouse grafana metabase minio ${producer} ${consumer}
+	- docker stop zookeeper kafka grafana minio ${producer} ${consumer}
 
 all-rm: all-stop
-	- docker rm zookeeper kafka clickhouse grafana metabase minio ${producer} ${consumer}
+	- docker rm zookeeper kafka grafana minio ${producer} ${consumer}
