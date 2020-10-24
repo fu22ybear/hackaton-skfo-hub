@@ -1,0 +1,12 @@
+<yandex>
+    <users>
+      <local>
+          <profile>analytics</profile>
+            <networks>
+                  <ip>::/0</ip>
+            </networks>
+          <password>local</password>
+          <quota>analytics</quota>
+      </local>
+    </users>
+</yandex>

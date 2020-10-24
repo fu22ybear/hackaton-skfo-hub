@@ -1,0 +1,7 @@
+data/.gitkeep
+data/
+
+!plugins/clickhouse.metabase-driver.jar
+plugins/
+
+creds
